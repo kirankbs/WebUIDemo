@@ -16,23 +16,12 @@ node {
 
    }
 
-stage 'ASSESS_COVERAGE'
-node {
-   	sh 'chmod +x gradlew'
-  sh './gradlew jacoco --info'
-   	}
-
 stage 'START_APPLICATION'
     node {
        sh 'chmod +x gradlew'
        sh './gradlew startWebUI'
         }
 
-stage 'ASSESS_COVERAGE1'
-node {
-   	sh 'chmod +x gradlew'
-  sh './gradlew jacoco --info'
-   	}
 
 stage 'ARCHIVE_ARTIFACTS'
 node{
