@@ -1,7 +1,7 @@
 #!groovy
 
 node{
-   git 'https://github.com/kirankbs/dominos.git'
+   git 'https://github.com/kirankbs/WebUIDemo.git'
 }
 stage 'CLEAN_DEVELOPER_MODULE'
 node {
