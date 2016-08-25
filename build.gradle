@@ -1,0 +1,46 @@
+version '0.0.1'
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'jetty'
+
+httpPort = 9090
+stopPort = 9091
+stopKey = "stop"
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}
+
+task startWebUI(type: ExecWait) {
+    command 'C:\\Users\\kirankumarbs\\gradle-2.8\\bin\\gradle.bat jettyRunWar'
+}
+
+
+class ExecWait extends DefaultTask {
+    String command
+    @TaskAction
+    def createBackgroundProcess() {
+        ProcessBuilder builder = new ProcessBuilder(command.split(" "))
+        builder.redirectErrorStream(true)
+        Process process = builder.start()
+
+        InputStream stdout = process.getInputStream()
+        BufferedReader reader = new BufferedReader(new
+                InputStreamReader(stdout))
+
+
+        def line
+        while ((line = reader.readLine()) != null) {
+            println line + "***"
+            if(line.contains("war"))
+                break;
+        }
+    }
+}
