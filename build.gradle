@@ -21,7 +21,7 @@ dependencies {
 
 
 task startWebUI(type: ExecWait) {
-    command 'C:\\Users\\kirankumarbs\\gradle-2.8\\bin\\gradle.bat jettyRunWar'
+    command './gradlew jettyRunWar'
 }
 
 
